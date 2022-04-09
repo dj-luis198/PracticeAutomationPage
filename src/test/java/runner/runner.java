@@ -12,14 +12,14 @@ import pages.Base;
         glue= "steps",
         plugin = {
                 "pretty","html:target/html-reports/report.html"},
-        tags= "@test",
+        tags= "@register",
         monochrome = true
 )
 
 public class runner {
     @AfterClass
     public static void close(){
-        Base.quit();
+        //Base.quit();
     }
 
 }
