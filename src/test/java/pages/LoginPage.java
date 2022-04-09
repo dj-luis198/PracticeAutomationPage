@@ -6,24 +6,41 @@ private String inputEmail="//*[@id=\"email\"]";
 private String inputPassword="//*[@id=\"passwd\"]";
 private String buttonSubmitLogin="//*[@id=\"SubmitLogin\"]";
 
+
     public LoginPage() {
         super(driver);
     }
 
     public void checkPage(){
-        isDisplayed(spanAuthentication);
+        try {
+            isDisplayed(spanAuthentication);
+        }catch (org.openqa.selenium.TimeoutException e) {
+            throw new Error ("El WebElement spanAuthentication no encontrado: "+e);
+        }
     }
 
     public void email(String email){
-        sendKeys(inputEmail,email);
+        try {
+            sendKeys(inputEmail,email);
+        }catch (org.openqa.selenium.TimeoutException e) {
+            throw new Error ("El WebElement inputEmail no encontrado: "+e);
+        }
     }
 
     public void passwd(String pass){
-        sendKeys(inputPassword,pass);
+        try {
+            sendKeys(inputPassword,pass);
+        }catch (org.openqa.selenium.TimeoutException e) {
+            throw new Error ("El WebElement inputPassword no encontrado: "+e);
+        }
     }
 
     public void clickButton(){
-        click(buttonSubmitLogin);
+        try {
+            click(buttonSubmitLogin);
+        }catch (org.openqa.selenium.TimeoutException e) {
+            throw new Error ("El WebElement buttonSubmitLogin no encontrado: "+e);
+        }
     }
 
 

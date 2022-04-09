@@ -11,4 +11,4 @@ Feature: Test the functionality of the page automationpractice.com
     Examples:
 
       |email                |pass  |
-      |mycuenta@gmail.com   |pass1   |
+      |mycuenta@gmail.com   |pass2   |

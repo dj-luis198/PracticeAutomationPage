@@ -50,6 +50,10 @@ public class Base {
         return findElement(locator).isDisplayed();
     }
 
+    protected static String getText(String locator){
+        return findElement(locator).getText();
+    }
+
     public static void quit(){
         driver.quit();
     }
