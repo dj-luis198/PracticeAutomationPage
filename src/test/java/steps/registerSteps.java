@@ -3,10 +3,12 @@ package steps;
 import io.cucumber.java.en.*;
 import pages.IndexPage;
 import pages.LoginPage;
+import pages.RegisterPage;
 
 public class registerSteps {
     IndexPage IP = new IndexPage();
     LoginPage LP= new LoginPage();
+    RegisterPage RP= new RegisterPage();
 
     @Given("^Will enter the page automationpractice.com$")
     public void goTOPage(){
@@ -21,7 +23,7 @@ public class registerSteps {
     @And("^Register your email$")
     public void emailRegister(){
         LP.checkPage();
-        LP.emailRegister("mycuenta5@gmail.com");
+        LP.emailRegister("mycuenta20@gmail.com");
     }
 
     @And("^Press the create account button$")
@@ -35,6 +37,14 @@ public class registerSteps {
     @And("^Enter your personal data$")
     public void enterPersonalData(){
 
+        RP.checkPage();
+        RP.selectRadioButton("Mrs.");
+        RP.enterFirstName("Daniel");
+        RP.enterLastName("Farias");
+        RP.checkEmail("mycuenta20@gmail.com");
+        RP.enterPasswd();
+        RP.enterDateOfBirth("21","7","2000");
+        RP.selectCheckboxs("no","yes");
     }
 
     @And("^Enter your address information$")

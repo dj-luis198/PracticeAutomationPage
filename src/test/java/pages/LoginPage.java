@@ -17,7 +17,7 @@ private String errorCreateAccount="//*[@id=\"create_account_error\"]";
     public void checkPage(){
         try {
             isDisplayed(spanAuthentication);
-        }catch (org.openqa.selenium.TimeoutException e) {
+        }catch (org.openqa.selenium.TimeoutException |org.openqa.selenium.NoSuchElementException e) {
             throw new Error ("El WebElement spanAuthentication no encontrado: "+e);
         }
     }
@@ -25,7 +25,7 @@ private String errorCreateAccount="//*[@id=\"create_account_error\"]";
     public void email(String email){
         try {
             sendKeys(inputEmail,email);
-        }catch (org.openqa.selenium.TimeoutException e) {
+        }catch (org.openqa.selenium.TimeoutException |org.openqa.selenium.NoSuchElementException e) {
             throw new Error ("El WebElement inputEmail no encontrado: "+e);
         }
     }
@@ -33,7 +33,7 @@ private String errorCreateAccount="//*[@id=\"create_account_error\"]";
     public void emailRegister(String email){
         try {
             sendKeys(inputEmailCreateAccount,email);
-        }catch (org.openqa.selenium.TimeoutException e) {
+        }catch (org.openqa.selenium.TimeoutException |org.openqa.selenium.NoSuchElementException e) {
             throw new Error ("El WebElement inputEmailCreateAccount no encontrado: "+e);
         }
     }
@@ -42,7 +42,7 @@ private String errorCreateAccount="//*[@id=\"create_account_error\"]";
     public void passwd(String pass){
         try {
             sendKeys(inputPassword,pass);
-        }catch (org.openqa.selenium.TimeoutException e) {
+        }catch (org.openqa.selenium.TimeoutException |org.openqa.selenium.NoSuchElementException e) {
             throw new Error ("El WebElement inputPassword no encontrado: "+e);
         }
     }
@@ -50,7 +50,7 @@ private String errorCreateAccount="//*[@id=\"create_account_error\"]";
     public void clickButton(){
         try {
             click(buttonSubmitLogin);
-        }catch (org.openqa.selenium.TimeoutException e) {
+        }catch (org.openqa.selenium.TimeoutException |org.openqa.selenium.NoSuchElementException e) {
             throw new Error ("El WebElement buttonSubmitLogin no encontrado: "+e);
         }
     }
@@ -58,7 +58,7 @@ private String errorCreateAccount="//*[@id=\"create_account_error\"]";
     public void clickButtonCreate(){
         try {
             click(buttonCreateAccount);
-        }catch (org.openqa.selenium.TimeoutException e) {
+        }catch (org.openqa.selenium.TimeoutException |org.openqa.selenium.NoSuchElementException e) {
             throw new Error ("El WebElement buttonCreateAccount no encontrado: "+e);
         }
     }
@@ -70,7 +70,7 @@ private String errorCreateAccount="//*[@id=\"create_account_error\"]";
                 throw new Error ("El email ingresado no es correcto o ya esta registrado");
             }
         }catch (org.openqa.selenium.TimeoutException |org.openqa.selenium.NoSuchElementException e) {
-            throw new Error ("El WebElement buttonCreateAccount no encontrado: "+e);
+
         }
     }
 
