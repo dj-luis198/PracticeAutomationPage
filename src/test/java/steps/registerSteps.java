@@ -24,7 +24,7 @@ public class registerSteps {
     @And("Ingresa su Email")
     public void ingresa_su_email() {
        LP.checkPage();
-       LP.emailRegister("mycuenta23@gmail.com");
+       LP.emailRegister("mycuenta24@gmail.com");
     }
     @And("Presiona el boton Create an account")
     public void presiona_el_boton_create_an_account() throws InterruptedException {
@@ -46,7 +46,7 @@ public class registerSteps {
     }
     @And("Confirma Email")
     public void confirma_email() {
-        RP.checkEmail("mycuenta23@gmail.com");
+        RP.checkEmail("mycuenta24@gmail.com");
     }
     @And("Ingresa Password")
     public void ingresa_password() {
@@ -111,6 +111,7 @@ public class registerSteps {
     @Then("Deberia llevarme a la pagina My Account")
     public void deberia_llevarme_a_la_pagina_my_account() {
         Assert.assertTrue(MA.checkPage());
+        Assert.assertEquals("Daniel Farias",MA.checkUserName("Daniel Farias"));
     }
 
 }

@@ -14,6 +14,9 @@ public class MyAccount extends Base{
         }catch (org.openqa.selenium.TimeoutException | org.openqa.selenium.NoSuchElementException e) {
            return false;
         }
+    }
 
+    public String checkUserName(String text){
+        return findElementLinkText(text).getText();
     }
 }

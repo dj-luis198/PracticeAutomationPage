@@ -41,6 +41,14 @@ public class Base {
         }
     }
 
+    protected static WebElement findElementLinkText(String text) {
+        try {
+            return ewait.until(ExpectedConditions.presenceOfElementLocated(By.linkText(text)));
+        }catch (org.openqa.selenium.TimeoutException |org.openqa.selenium.NoSuchElementException e) {
+            throw new Error ("El LinkText "+text+" no encontrado: "+e);
+        }
+    }
+
     private static List<WebElement> findElements(String locator) {
         try {
             return ewait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.name(locator)));
