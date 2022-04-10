@@ -16,7 +16,7 @@ public class Base {
     private static WebDriverWait ewait;
 
     static {
-        System.setProperty("webdriver.chrome.driver", "C:\\drivers\\chromedriver_win3299//chromedriver.exe");
+        System.setProperty("webdriver.chrome.driver", "./drivers\\chromeDriver\\chromedriver.exe");
         ChromeOptions ChromeOptions = new ChromeOptions();
         driver = new ChromeDriver(ChromeOptions);
         driver.manage().window().maximize();
@@ -34,20 +34,24 @@ public class Base {
     }
 
     private static WebElement findElement(String locator) {
-        return ewait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(locator)));
+        try {
+            return ewait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(locator)));
+        }catch (org.openqa.selenium.TimeoutException |org.openqa.selenium.NoSuchElementException e) {
+            throw new Error ("El WebElement "+locator+" no encontrado: "+e);
+        }
     }
 
     private static List<WebElement> findElements(String locator) {
-        return ewait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.name(locator)));
+        try {
+            return ewait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.name(locator)));
+        }catch (org.openqa.selenium.TimeoutException |org.openqa.selenium.NoSuchElementException e) {
+            throw new Error ("El WebElement "+locator+" no encontrado: "+e);
+        }
     }
 
     protected static void sendKeys(String locator, String text) {
         findElement(locator).sendKeys(text);
     }
-
-   /* protected static void clickLinkText(String text){
-        driver.findElement(By.linkText(text)).click();
-    }*/
 
     protected static void click(String locator){
         findElement(locator).click();
@@ -60,10 +64,6 @@ public class Base {
     protected static Boolean isEnabled(String locator){return findElement(locator).isEnabled();}
 
     protected static Boolean isSelected(String locator){return findElement(locator).isSelected();}
-
-   /* protected static String getText(String locator){
-        return findElement(locator).getText();
-    }*/
 
     protected static void clickRadioButton(String locator, String text){
         List <WebElement> radioButton= findElements(locator);
@@ -82,8 +82,12 @@ public class Base {
         }else {return false;}
     }
 
-    protected static void selectDate(String locator, String date){
-        new Select(findElement(locator)).selectByValue(date);
+    protected static void selectByValue(String locator, String value){
+        new Select(findElement(locator)).selectByValue(value);
+    }
+
+    protected static void selectByText(String locator, String text){
+        new Select(findElement(locator)).selectByVisibleText(text);
     }
 
     protected static void selectCheckbox(String locator){

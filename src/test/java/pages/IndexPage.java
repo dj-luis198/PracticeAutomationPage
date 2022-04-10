@@ -1,8 +1,5 @@
 package pages;
 
-
-
-
 public class IndexPage extends Base{
     private String signIn="//*[@class=\"login\"]";
 
