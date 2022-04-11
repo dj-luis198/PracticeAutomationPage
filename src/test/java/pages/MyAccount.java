@@ -9,11 +9,7 @@ public class MyAccount extends Base{
     }
 
     public Boolean checkPage(){
-        try {
             return isDisplayed(logout);
-        }catch (org.openqa.selenium.TimeoutException | org.openqa.selenium.NoSuchElementException e) {
-           return false;
-        }
     }
 
     public String checkUserName(String text){

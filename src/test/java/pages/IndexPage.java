@@ -1,7 +1,9 @@
 package pages;
 
 public class IndexPage extends Base{
+
     private String signIn="//*[@class=\"login\"]";
+
 
     public IndexPage() {
         super(driver);
@@ -11,11 +13,16 @@ public class IndexPage extends Base{
         goTo("http://automationpractice.com/index.php");
 }
 
-    public void signIn(){
-    try {
-        click(signIn);
-    }catch (org.openqa.selenium.TimeoutException e) {
-        throw new Error ("El WebElement singnIn no encontrado: "+e);
+    public void checkPage(){
+        String actual=getTitle();
+        String expected="My Store";
+
+        if(!actual.equals(expected)){
+            throw new Error("No nos encontramos en la Home Page");
+        }
     }
-}
+
+    public void signIn(){
+        click(signIn);
+    }
 }

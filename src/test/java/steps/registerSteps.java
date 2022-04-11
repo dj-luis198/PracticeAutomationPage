@@ -14,102 +14,101 @@ public class registerSteps {
     private static final RegisterPage RP= new RegisterPage();
 
     @Given("El usuario se encuentra en la pagina home de automationpractice")
-    public void el_usuario_se_encuentra_en_la_pagina_home_de_automationpractice() {
+    public void elUsuarioSeEncuentraEnLaPaginaHomeDeAutomationPractice() {
         IP.goToIndexPage();
+        IP.checkPage();
     }
     @When("Hace clic en SignIn")
-    public void hace_clic_en_sign_in() {
+    public void haceClicEnSignIn() {
        IP.signIn();
     }
     @And("Ingresa su Email")
-    public void ingresa_su_email() {
+    public void ingresaSuEmail() {
        LP.checkPage();
-       LP.emailRegister("mycuenta24@gmail.com");
+       LP.emailRegister("mycuenta26@gmail.com");
     }
     @And("Presiona el boton Create an account")
-    public void presiona_el_boton_create_an_account() throws InterruptedException {
+    public void presionaElBotonCreateAnAccount() throws InterruptedException {
         LP.clickButtonCreate();
         LP.checkErrorAccount();
     }
     @And("Selecciona Title")
-    public void selecciona_title() {
+    public void seleccionaTitle() {
        RP.checkPage();
        RP.selectGender("Mr.");
     }
     @And("Ingresa First name")
-    public void ingresa_first_name() {
+    public void ingresaFirstName() {
        RP.enterFirstName("Daniel");
     }
     @And("Ingresa Last name")
-    public void ingresa_last_name() {
+    public void ingresaLastName() {
        RP.enterLastName("Farias");
     }
     @And("Confirma Email")
-    public void confirma_email() {
-        RP.checkEmail("mycuenta24@gmail.com");
+    public void confirmaEmail() {
+        RP.checkEmail("mycuenta26@gmail.com");
     }
     @And("Ingresa Password")
-    public void ingresa_password() {
+    public void ingresaPassword() {
        RP.enterPasswd("pass23");
     }
     @And("Ingresa Date of Birth")
-    public void ingresa_date_of_birth() {
+    public void ingresaDateOfBirth() {
         RP.selectDateOfBirth("21","7","2000");
     }
     @And("Selecciona opciones de suscripcion")
-    public void selecciona_opciones_de_suscripcion() {
+    public void seleccionaOpcionesDeSuscripcion() {
         RP.selectCheckboxs("yes","no");
     }
     @And("Ingresa Company")
-    public void ingresa_company() {
+    public void ingresaCompany() {
         RP.enterCompany("NA");
     }
     @And("Selecciona Country")
-    public void selecciona_country() {
+    public void seleccionaCountry() {
         RP.selectCountry("United States");
     }
     @And("Selecciona State")
-    public void selecciona_state() {
+    public void seleccionaState() {
         RP.selectState("Delaware");
     }
     @And("Ingresa City")
-    public void ingresa_city() {
+    public void ingresaCity() {
         RP.enterCity("city");
     }
     @And("Ingresa Postal Code")
-    public void ingresa_postal_code() {
+    public void ingresaPostalCode() {
        RP.enterPostalCode("11111");
     }
     @And("Ingresa Address1")
-    public void ingresa_address1() {
+    public void ingresaAddress1() {
         RP.enterAddress1("address1");
     }
     @And("Ingresa Address2")
-    public void ingresa_address2() {
+    public void ingresaAddress2() {
         RP.enterAddress2("address2");
     }
     @And("Ingresa Additional information")
-    public void ingresa_additional_information() {
+    public void ingresaAdditionalInformation() {
         RP.enterAdditionalInformation("info");
     }
     @And("Ingresa Home phone")
-    public void ingresa_home_phone() {
+    public void ingresaHomePhone() {
         RP.enterPhone("3814374118");
     }
     @And("Ingresa Mobile phone")
-    public void ingresa_mobile_phone() {
+    public void ingresaMobilePhone() {
        RP.enterPhoneMobile("3813004847");
     }
     @And("Ingresa address alias")
-    public void ingresa_address_alias() {
+    public void ingresaAddressAlias() {
         RP.enterAliasAddress("alias");
     }
     @And("Presiona el boton register")
-    public void presiona_el_boton_register() {
-        RP.clickButtonRegister();
-    }
+    public void presionaElBotonRegister() { RP.clickButtonRegister(); }
     @Then("Deberia llevarme a la pagina My Account")
-    public void deberia_llevarme_a_la_pagina_my_account() {
+    public void deberiaLlevarmeALaPaginaMyAccount() {
         Assert.assertTrue(MA.checkPage());
         Assert.assertEquals("Daniel Farias",MA.checkUserName("Daniel Farias"));
     }

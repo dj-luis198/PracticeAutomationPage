@@ -22,6 +22,7 @@ public class Hook extends Base {
             byte[] fileContent = FileUtils.readFileToByteArray(screenshot);
             scenario.attach(fileContent, "image/png", "image"+scenario.getId());
         }
+        Base.quit();
     }
 }
 

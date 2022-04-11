@@ -8,10 +8,15 @@ import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import utils.LogHelper;
 
+import java.time.Duration;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class Base {
+    private static final Logger LOGGER= LogHelper.getLogger();
     protected static WebDriver driver;
     private static WebDriverWait ewait;
 
@@ -20,7 +25,7 @@ public class Base {
         ChromeOptions ChromeOptions = new ChromeOptions();
         driver = new ChromeDriver(ChromeOptions);
         driver.manage().window().maximize();
-        WebDriverWait ewait = new WebDriverWait(driver, 10);
+        WebDriverWait ewait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
     public Base(WebDriver driver) {
@@ -37,7 +42,7 @@ public class Base {
         try {
             return ewait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(locator)));
         }catch (org.openqa.selenium.TimeoutException |org.openqa.selenium.NoSuchElementException e) {
-            throw new Error ("El WebElement "+locator+" no encontrado: "+e);
+            throw new Error ("WebElement "+locator+" no encontrado: "+e);
         }
     }
 
@@ -53,11 +58,13 @@ public class Base {
         try {
             return ewait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(By.name(locator)));
         }catch (org.openqa.selenium.TimeoutException |org.openqa.selenium.NoSuchElementException e) {
-            throw new Error ("El WebElement "+locator+" no encontrado: "+e);
+            throw new Error ("WebElement "+locator+" no encontrado: "+e);
+
         }
     }
 
     protected static void sendKeys(String locator, String text) {
+        clear(locator);
         findElement(locator).sendKeys(text);
     }
 
@@ -67,6 +74,16 @@ public class Base {
 
     protected static Boolean isDisplayed(String locator){
         return findElement(locator).isDisplayed();
+    }
+
+    protected static Boolean isDisplayedError(String locator) {
+        try {
+            return ewait.until(ExpectedConditions.presenceOfElementLocated(By.xpath(locator))).isDisplayed();
+        } catch (org.openqa.selenium.TimeoutException | org.openqa.selenium.NoSuchElementException e) {
+            LOGGER.log(Level.INFO,"El WebElement "+locator+" no fue encontrados");
+
+        }
+        return false;
     }
 
     protected static Boolean isEnabled(String locator){return findElement(locator).isEnabled();}
@@ -100,6 +117,18 @@ public class Base {
 
     protected static void selectCheckbox(String locator){
         findElement(locator).click();
+    }
+
+    protected static String getTitle(){
+        return driver.getTitle();
+    }
+
+    protected static String getText(String locator){
+        return findElement(locator).getText();
+    }
+
+    private static void clear(String locator){
+        findElement(locator).clear();
     }
 
     public static void quit(){
